@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Book constructor function
+function Book(title, author, genre, year) {
+    this.title = title;
+    this.author = author;
+    this.genre = genre;
+    this.year = year;
+}
+
+// Library object
+const library = {
+    books: [],
+
+    // Method to add a book to the library
+    addBook(book) {
+        this.books.push(book);
+        console.log(`Added "${book.title}" to the library.`);
+    },
+
+    // Method to display all books in the library
+    viewBooks() {
+        console.log("Library Collection:");
+        this.books.forEach((book, index) => {
+            console.log(`${index + 1}. ${book.title} by ${book.author} (${book.year}) - Genre: ${book.genre}`);
+        });
+    },
+
+    // Method to search for a book by title
+    searchBook(title) {
+        const foundBooks = this.books.filter(book => book.title.toLowerCase().includes(title.toLowerCase()));
+        if (foundBooks.length > 0) {
+            console.log("Search Results:");
+            foundBooks.forEach(book => console.log(`${book.title} by ${book.author}`));
+        } else {
+            console.log(`No books found with the title "${title}".`);
+        }
+    }
+};
+
+// Usage
+
+// Creating book instances
+const book1 = new Book("The Great Gatsby", "F. Scott Fitzgerald", "Fiction", 1925);
+const book2 = new Book("To Kill a Mockingbird", "Harper Lee", "Fiction", 1960);
+const book3 = new Book("1984", "George Orwell", "Dystopian", 1949);
+
+// Adding books to the library
+library.addBook(book1);
+library.addBook(book2);
+library.addBook(book3);
+
+// Viewing all books
+library.viewBooks();
+
+// Searching for a book by title
+library.searchBook("1984");
+
+    </script>
+</body>
+</html>

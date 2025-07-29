@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Book Manager</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Library Book Manager</h1>
+        
+        <div class="form-container">
+            <input type="text" id="title" placeholder="Book Title">
+            <input type="text" id="author" placeholder="Author">
+            <input type="text" id="genre" placeholder="Genre">
+            <input type="text" id="year" placeholder="Year">
+            <button onclick="addOrUpdateBook()">Add Book</button>
+        </div>
+        
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search by Title">
+            <button onclick="searchBook()">Search</button>
+        </div>
+        
+        <h2>Library Collection</h2>
+        <ul id="bookList"></ul>
+        
+        <h2>Search Results</h2>
+        <ul id="searchResults"></ul>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>

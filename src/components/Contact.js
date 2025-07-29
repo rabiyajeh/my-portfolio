@@ -1,184 +1,143 @@
 import React from 'react';
-import styled, { keyframes } from 'styled-components';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
+import styled from 'styled-components';
+import { motion } from 'framer-motion';
+import { FaGithub, FaLinkedin, FaEnvelope, FaDownload } from 'react-icons/fa';
 
 const Contact = () => {
-  const initialValues = {
-    name: '',
-    email: '',
-    subject: '',
-    message: '',
-  };
-
-  const validationSchema = Yup.object({
-    name: Yup.string().required('Required'),
-    email: Yup.string().email('Invalid email format').required('Required'),
-    subject: Yup.string().required('Required'),
-    message: Yup.string().required('Required'),
-  });
-
-  const onSubmit = (values, { resetForm }) => {
-    console.log(values);
-    // Handle form submission logic here
-    resetForm();
-  };
-
   return (
-    <ContactSection>
-      <FormContainer>
-        <FormSection>
-          <h2>Contact Me</h2>
-          <Formik
-            initialValues={initialValues}
-            validationSchema={validationSchema}
-            onSubmit={onSubmit}
-          >
-            {() => (
-              <Form>
-                <FormField>
-                  <label htmlFor="name">Name</label>
-                  <Field type="text" id="name" name="name" />
-                  <ErrorMessage name="name" component="div" className="error" />
-                </FormField>
-                <FormField>
-                  <label htmlFor="email">Email</label>
-                  <Field type="email" id="email" name="email" />
-                  <ErrorMessage name="email" component="div" className="error" />
-                </FormField>
-                <FormField>
-                  <label htmlFor="subject">Subject</label>
-                  <Field type="text" id="subject" name="subject" />
-                  <ErrorMessage name="subject" component="div" className="error" />
-                </FormField>
-                <FormField>
-                  <label htmlFor="message">Message</label>
-                  <Field as="textarea" id="message" name="message" rows="5" />
-                  <ErrorMessage name="message" component="div" className="error" />
-                </FormField>
-                <SubmitButton type="submit">Send Message</SubmitButton>
-              </Form>
-            )}
-          </Formik>
-        </FormSection>
-        <ImageSection>
-          <img src={`${process.env.PUBLIC_URL}/form-img.jpeg`} alt="Contact Us" />
-        </ImageSection>
-      </FormContainer>
-    </ContactSection>
+    <Section id="contact">
+      <motion.h2
+        initial={{ y: 60, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.6 }}
+      >
+        Let s Connect
+      </motion.h2>
+
+      <ContactGrid>
+        <motion.div
+          className="contact-info"
+          initial={{ x: -60, opacity: 0 }}
+          whileInView={{ x: 0, opacity: 1 }}
+          transition={{ delay: 0.2 }}
+        >
+          <Item>
+            <FaEnvelope className="icon" />
+            <span>rabiii4046@gmail.com</span>
+          </Item>
+          <Item>
+            <FaGithub className="icon" />
+            <a href="https://github.com/rabiyajeh" target="_blank" rel="noopener noreferrer">
+              github.com/rabiyajeh
+            </a>
+          </Item>
+          <Item>
+            <FaLinkedin className="icon" />
+            <a href="https://linkedin.com/in/rabbiya-jehangir-8b0a831ab" target="_blank" rel="noopener noreferrer">
+              linkedin.com/in/rabbiya-jehangir
+            </a>
+          </Item>
+        </motion.div>
+
+        <motion.div
+          className="resume-box"
+          initial={{ x: 60, opacity: 0 }}
+          whileInView={{ x: 0, opacity: 1 }}
+          transition={{ delay: 0.4 }}
+        >
+          <ResumeLink href="/Rabbiya-Jehangir-CV.pdf" download>
+            <FaDownload />
+            Download My Resume
+          </ResumeLink>
+        </motion.div>
+      </ContactGrid>
+    </Section>
   );
 };
 
 export default Contact;
 
-// Styled components
-const neonAnimation = keyframes`
-  0% {
-    box-shadow: 0 0 5px #f39c12;
-  }
-  50% {
-    box-shadow: 0 0 20px #f39c12;
-  }
-  100% {
-    box-shadow: 0 0 5px #f39c12;
-  }
-`;
-
-const ContactSection = styled.section`
-  padding: 50px 20px;
-  
-  border-radius: 15px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-`;
-
-const FormContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  max-width: 1200px;
-  margin: auto;
-  overflow: hidden;
-  border-radius: 15px;
-  background: #fff;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-`;
-
-const ImageSection = styled.div`
-  flex: 1;
-  img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    border-radius: 0 15px 15px 0;
-  }
-`;
-
-const FormSection = styled.div`
-  flex: 1;
-  padding: 30px;
-  max-width: 600px;
-  overflow-y: auto;
-  background: #000;
-  border-radius: 15px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+// Styled Components
+const Section = styled.section`
+  background: linear-gradient(135deg, #0f0f0f, #1c1c1c);
+  color: #fff;
+  padding: 80px 20px;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
 
   h2 {
-    text-align: center;
-    color: #f39c12;
-    margin-bottom: 30px;
-    font-size: 2rem;
-    text-shadow: 0 0 10px #f39c12;
+    font-size: 2.8rem;
+    margin-bottom: 50px;
+    color: #ffae00;
+    text-shadow: 0 0 5px #ffae00, 0 0 10px #ffae00;
   }
 `;
 
-const FormField = styled.div`
-  margin-bottom: 20px;
+const ContactGrid = styled.div`
+  max-width: 900px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
 
-  label {
-    display: block;
-    margin-bottom: 8px;
-    color: #f39c12;
+  @media (min-width: 768px) {
+    grid-template-columns: 1fr 1fr;
+  }
+`;
+
+const Item = styled.div`
+  background: #111;
+  border-left: 5px solid #ffae00;
+  padding: 20px;
+  margin-bottom: 20px;
+  text-align: left;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(255, 174, 0, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1.1rem;
+
+  .icon {
+    color: #ffae00;
+    font-size: 1.3rem;
   }
 
-  input, textarea {
-    width: 100%;
-    padding: 12px;
-    border: 2px solid #f39c12;
-    border-radius: 5px;
-    background: #333;
+  a {
     color: #fff;
-    font-size: 16px;
-    transition: border 0.3s, box-shadow 0.3s;
+    text-decoration: none;
+    transition: 0.3s ease;
 
-    &:focus {
-      outline: none;
-      border-color: #f39c12;
-      box-shadow: 0 0 10px #f39c12;
+    &:hover {
+      color: #ffae00;
     }
   }
-
-  .error {
-    color: #e74c3c;
-    margin-top: 5px;
-  }
 `;
 
-const SubmitButton = styled.button`
-  padding: 12px 25px;
-  background-color: #f39c12;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  border-radius: 5px;
-  font-size: 16px;
-  font-weight: bold;
-  box-shadow: 0 0 5px #f39c12;
-  transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
-  animation: ${neonAnimation} 1.5s infinite;
+const ResumeLink = styled.a`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 28px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  background-color: #111;
+  color: #ffae00;
+  border: 2px solid #ffae00;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: 0.3s ease;
+  box-shadow: 0 0 10px #ffae00, 0 0 20px #ffae00;
 
   &:hover {
-    background-color: #e67e22;
+    background-color: #ffae00;
+    color: #111;
+    box-shadow: 0 0 20px #ffae00;
     transform: scale(1.05);
-    box-shadow: 0 0 15px #f39c12;
+  }
+
+  svg {
+    font-size: 1.3rem;
   }
 `;

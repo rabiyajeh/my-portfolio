@@ -1,365 +1,141 @@
-import React from 'react';
-import styled from 'styled-components';
-import { motion } from 'framer-motion';
-import Particles from 'react-tsparticles';
+import React, { useEffect } from 'react';
+import { Scrollbars } from 'react-custom-scrollbars-2';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import './About.css';
+import {
+  FaGithub,
+  FaLinkedin,
+  FaBook,
+  FaUtensils,
+  FaGlobe,
+  FaFlask,
+} from 'react-icons/fa';
+
+const skills = [
+  { name: 'React.js', level: 90 },
+  { name: 'Laravel', level: 85 },
+  { name: 'JavaScript', level: 80 },
+  { name: 'PHP', level: 75 },
+  { name: 'SQL', level: 70 },
+];
+
+const tools = ['VS Code', 'Git & GitHub', 'Figma', 'Postman','MySQL Workbench'];
+
+const hobbies = [
+  { name: 'Reading', icon: <FaBook /> },
+  { name: 'Baking', icon: <FaUtensils /> },
+  { name: 'Trying New Things', icon: <FaFlask /> },
+  { name: 'Traveling', icon: <FaGlobe /> },
+];
+
+const experience = [
+  {
+    title: 'AI Engineer Intern',
+    company: 'AITec',
+    description: 'Researched and applied deep learning models to real-time applications.',
+  },
+  {
+    title: 'Web Developer',
+    company: 'GAO Tek',
+    description: 'Built and optimized full-stack Laravel apps for industrial clients.',
+  },
+  {
+    title: 'Frontend Developer',
+    company: 'YD Solutions',
+    description: 'Delivered responsive React interfaces and WordPress solutions.',
+  },
+];
 
 const About = () => {
+  useEffect(() => {
+    AOS.init({ duration: 1000 });
+  }, []);
+
   return (
-    <AboutSection id="about">
-      <ParticlesWrapper>
-        <Particles
-          id="particles-js"
-          options={{
-            background: {
-              color: {
-                value: "#f5f5f5",
-              },
-            },
-            particles: {
-              color: {
-                value: "#3498db",
-              },
-              links: {
-                color: "#3498db",
-                distance: 150,
-                enable: true,
-                opacity: 0.4,
-                width: 1,
-              },
-              collisions: {
-                enable: true,
-              },
-              move: {
-                direction: "none",
-                enable: true,
-                outModes: {
-                  default: "bounce",
-                },
-                random: false,
-                speed: 1,
-                straight: false,
-              },
-              number: {
-                density: {
-                  enable: true,
-                  area: 800,
-                },
-                value: 100,
-              },
-              opacity: {
-                value: 0.5,
-              },
-              shape: {
-                type: "circle",
-              },
-              size: {
-                random: true,
-                value: 4,
-              },
-            },
-            interactivity: {
-              events: {
-                onClick: {
-                  enable: true,
-                  mode: "repulse",
-                },
-                onHover: {
-                  enable: true,
-                  mode: "bubble",
-                },
-              },
-              modes: {
-                bubble: {
-                  distance: 250,
-                  duration: 2,
-                  opacity: 0.6,
-                  size: 0,
-                },
-                repulse: {
-                  distance: 400,
-                  duration: 0.4,
-                },
-              },
-            },
-            detectRetina: true,
-          }}
-        />
-      </ParticlesWrapper>
-      <Content>
-        <ImageContainer>
-          <ProfileImage src="/images/about.jpeg" alt="Profile" />
-        </ImageContainer>
-        <TextContainer>
-          <motion.h2
-            initial={{ y: -60, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 1 }}
-          >
-            About Me
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5, duration: 1 }}
-          >
-            I’m a passionate Web Developer and AI Enthusiast with experience in creating dynamic and interactive web applications. My work revolves around blending modern technologies with innovative solutions to build user-centric products.
-          </motion.p>
-          <ButtonContainer>
-            <DownloadCV href="/Rabbiya-Jehangir-CV.pdf" download>
-              <DownloadIcon src="/images/downloadbtn.png" alt="Download CV" />
-              Download CV
-            </DownloadCV>
-          </ButtonContainer>
-          <SocialLinks>
-            <SocialLink href="https://www.linkedin.com/in/rabbiya-jehangir-8b0a831ab" target="_blank" rel="noopener noreferrer">
-              <SocialIcon src="/images/linki.png" alt="LinkedIn" />
-            </SocialLink>
-            <SocialLink href="https://github.com/rabiyajeh" target="_blank" rel="noopener noreferrer">
-              <SocialIcon src="/images/git.png" alt="GitHub" />
-            </SocialLink>
-            <SocialLink href="mailto:rabiii4046@gmail.com">
-              <SocialIcon src="/images/gm.png" alt="Email" />
-            </SocialLink>
-          </SocialLinks>
-        </TextContainer>
-      </Content>
-      <Skills>
-        <motion.h2
-          initial={{ y: -60, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 1 }}
-        >
-          My Skills
-        </motion.h2>
-        <SkillBar>
-          <SkillIcon><SkillImage src="/images/react.jpg" alt="React.js" /></SkillIcon>
-          <SkillName>React.js</SkillName>
-          <SkillLevel
-            initial={{ width: '0%' }}
-            animate={{ width: '90%' }}
-            transition={{ duration: 1.5, ease: 'easeInOut' }}
-          />
-        </SkillBar>
-        <SkillBar>
-          <SkillIcon><SkillImage src="/images/laravel.jpg" alt="Laravel" /></SkillIcon>
-          <SkillName>Laravel</SkillName>
-          <SkillLevel
-            initial={{ width: '0%' }}
-            animate={{ width: '85%' }}
-            transition={{ duration: 1.5, ease: 'easeInOut' }}
-          />
-        </SkillBar>
-        <SkillBar>
-          <SkillIcon><SkillImage src="/images/python.jpg" alt="Python" /></SkillIcon>
-          <SkillName>Python</SkillName>
-          <SkillLevel
-            initial={{ width: '0%' }}
-            animate={{ width: '80%' }}
-            transition={{ duration: 1.5, ease: 'easeInOut' }}
-          />
-        </SkillBar>
-      </Skills>
-    </AboutSection>
+    <div className="about-wrapper">
+      <div className="animated-bg" />
+
+      <Scrollbars
+        autoHide
+        style={{ height: '100vh' }}
+        renderThumbVertical={({ style, ...props }) => (
+          <div {...props} style={{ ...style, backgroundColor: '#d4af37', borderRadius: '5px' }} />
+        )}
+      >
+        <div className="about-content">
+          <h1 data-aos="fade-down">About Me</h1>
+          <p data-aos="fade-up">
+            I am a passionate full-stack developer who builds modern and scalable web applications. I focus on clean code,
+            reusable components, and continuous learning.
+          </p>
+
+          {/* Skills Section */}
+          <h2 data-aos="fade-right">Skills</h2>
+          <div className="skills-section">
+            {skills.map((skill, idx) => (
+              <div key={idx} className="skill-bar" data-aos="fade-up" data-aos-delay={idx * 100}>
+                <span>{skill.name}</span>
+                <div className="progress-bar">
+                  <div className="progress" style={{ width: `${skill.level}%` }}></div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Experience Cards */}
+          <h2 data-aos="fade-left" style={{ marginTop: '2rem' }}>Experience</h2>
+          <div className="experience-cards">
+            {experience.map((exp, idx) => (
+              <div className="exp-card" key={idx} data-aos="zoom-in" data-aos-delay={idx * 100}>
+                <h3>{exp.title}</h3>
+                <h4>{exp.company}</h4>
+                <p>{exp.description}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* Tools */}
+          <h2 data-aos="fade-up" style={{ marginTop: '2rem' }}>Tools & Technologies</h2>
+          <div className="tools-section">
+            {tools.map((tool, idx) => (
+              <span className="tool-badge" key={idx} data-aos="fade-up" data-aos-delay={idx * 50}>
+                {tool}
+              </span>
+            ))}
+          </div>
+
+          {/* Hobbies Grid */}
+          <h2 data-aos="fade-up" style={{ marginTop: '2rem' }}>Hobbies & Interests</h2>
+          <div className="hobbies-grid">
+            {hobbies.map((hobby, idx) => (
+              <div className="hobby-item" key={idx} data-aos="flip-up" data-aos-delay={idx * 100}>
+                <div className="hobby-icon">{hobby.icon}</div>
+                <span>{hobby.name}</span>
+              </div>
+            ))}
+          </div>
+
+          {/* Social Links */}
+          <h2 data-aos="fade-up" style={{ marginTop: '2rem' }}>Connect with Me</h2>
+          <div className="social-icons">
+            <a href="https://github.com/rabiyajeh" target="_blank" rel="noopener noreferrer" title="GitHub">
+              <FaGithub />
+            </a>
+            <a href="https://www.linkedin.com/in/rabbiya-jehangir-8b0a831ab" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+              <FaLinkedin />
+            </a>
+          </div>
+
+          <p data-aos="fade-up" style={{ marginTop: '2rem' }}>
+            I'm on a journey to become a top-tier full-stack developer who can take ideas from concept to launch. Let's build together!
+          </p>
+
+          <div style={{ height: '50px' }}></div>
+        </div>
+      </Scrollbars>
+    </div>
   );
 };
 
 export default About;
-
-// Styled components
-const AboutSection = styled.section`
-  padding: 80px 20px;
-  position: relative;
-  overflow-y: auto;
-  font-family: 'Poppins', sans-serif;
-  color: #fff;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.1)), url('/background-pattern.png'); /* Subtle pattern overlay */
-  background-size: cover;
-  max-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-const ParticlesWrapper = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  overflow: hidden;
-`;
-
-const Content = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  gap: 30px;
-  text-align: center;
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  box-sizing: border-box;
-  @media (max-width: 768px) {
-    flex-direction: column;
-  }
-`;
-
-const ImageContainer = styled.div`
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const ProfileImage = styled.img`
-  border-radius: 50%;
-  width: 220px;
-  height: 220px;
-  object-fit: cover;
-  box-shadow: 0 20px 40px rgba(255, 105, 180, 0.6); /* Pink shadow for a modern touch */
-  border: 8px solid #fff;
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-
-  &:hover {
-    transform: scale(1.15);
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
-  }
-`;
-
-const TextContainer = styled.div`
-  flex: 1;
-  max-width: 700px;
-
-  h2 {
-    font-size: 3rem;
-    color: #e74c3c;
-    margin-bottom: 20px;
-    font-weight: 700;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-  }
-
-  p {
-    font-size: 1.4rem;
-    color: #333;
-    line-height: 1.8;
-    max-width: 600px;
-    margin: 0 auto;
-  }
-`;
-
-const Skills = styled.div`
-  margin-top: 50px;
-  text-align: center;
-
-  h2 {
-    font-size: 3rem;
-    color: #e74c3c;
-    margin-bottom: 20px;
-    font-weight: 700;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-  }
-`;
-
-const SkillBar = styled.div`
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
-  position: relative;
-  width: 100%;
-  max-width: 700px;
-  background: rgba(0, 0, 0, 0.2);
-  border-radius: 25px;
-  overflow: hidden;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-  padding: 10px;
-  transition: transform 0.3s ease;
-
-  &:hover {
-    transform: scale(1.05);
-  }
-`;
-
-const SkillIcon = styled.div`
-  flex: 0 0 50px;
-  text-align: center;
-`;
-
-const SkillImage = styled.img`
-  width: 40px;
-  height: 40px;
-`;
-
-const SkillName = styled.div`
-  flex: 1;
-  font-size: 1.2rem;
-  font-weight: 600;
-  text-align: left;
-  color: #333;
-  padding: 0 20px;
-`;
-
-const SkillLevel = styled(motion.div)`
-  flex: 1;
-  background-color: #3498db;
-  height: 10px;
-`;
-
-const ButtonContainer = styled.div`
-  margin-top: 20px;
-`;
-
-const DownloadCV = styled.a`
-  display: inline-flex;
-  align-items: center;
-  background-color: #e74c3c;
-  color: #fff;
-  padding: 10px 20px;
-  border-radius: 25px;
-  font-size: 1.1rem;
-  font-weight: 600;
-  text-decoration: none;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-  transition: background-color 0.3s ease, transform 0.3s ease;
-
-  &:hover {
-    background-color: #c0392b;
-    transform: scale(1.05);
-  }
-`;
-
-const DownloadIcon = styled.img`
-  width: 20px;
-  height: 20px;
-  margin-right: 10px;
-`;
-
-const SocialLinks = styled.div`
-  margin-top: 20px;
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-`;
-
-const SocialLink = styled.a`
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: #fff;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-  transition: background-color 0.3s ease, transform 0.3s ease;
-
-  &:hover {
-    background-color: #f5f5f5;
-    transform: scale(1.1);
-  }
-`;
-
-const SocialIcon = styled.img`
-  width: 20px;
-  height: 20px;
-`;
